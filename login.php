@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <?php endif; ?>
 
-            <form method="POST" action="/login.php">
+            <form method="POST" action="">
                 <div style="margin-bottom:18px;">
                     <label style="display:block;font-size:.85rem;font-weight:600;color:#94a3b8;margin-bottom:8px;">اسم المستخدم</label>
                     <div style="position:relative;">
