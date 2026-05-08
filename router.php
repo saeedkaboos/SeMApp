@@ -1,38 +1,58 @@
 <?php
 // ==========================================
-// موجّه الطلبات الرئيسي لـ PHP Built-in Server
+// Router لـ PHP Built-in Server / Render
 // ==========================================
 
 $uri = urldecode(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH));
 
-// إزالة البادئة /php-cyber
-$uri = preg_replace('#^/php-cyber#', '', $uri);
-if ($uri === '' || $uri === false) {
-    $uri = '/';
-}
-
-// الصفحة الرئيسية → لوحة التحكم
-if ($uri === '/') {
+if ($uri === '/' || $uri === '') {
     require __DIR__ . '/dashboard.php';
-    return true;
+    exit;
 }
 
 $file = __DIR__ . $uri;
 
-// تنفيذ ملفات PHP مباشرةً (يمنع التعامل معها كملفات ثابتة)
-if (is_file($file) && str_ends_with($file, '.php')) {
+// تشغيل ملفات PHP
+if (is_file($file) && pathinfo($file, PATHINFO_EXTENSION) === 'php') {
     require $file;
-    return true;
+    exit;
 }
 
-// خدمة الملفات الثابتة (CSS, JS, images, fonts)
+// الملفات الثابتة
 if (is_file($file)) {
     return false;
 }
 
-// 404
+// صفحة 404
 http_response_code(404);
-echo '<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="UTF-8">
-<style>body{background:#0a0e1a;color:#fff;font-family:Cairo,sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;}
-h1{color:#00d4ff;}p{color:#8892a4;}</style></head>
-<body><div style="text-align:center"><h1>404</h1><p>الصفحة غير موجودة</p><a href="/php-cyber/" style="color:#00d4ff">العودة للرئيسية</a></div></body></html>';
+?>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>404</title>
+<style>
+body{
+    background:#0a0e1a;
+    color:#fff;
+    font-family:Cairo,sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100vh;
+    margin:0;
+}
+a{
+    color:#00d4ff;
+    text-decoration:none;
+}
+</style>
+</head>
+<body>
+<div style="text-align:center">
+    <h1>404</h1>
+    <p>الصفحة غير موجودة</p>
+    <a href="/">العودة للرئيسية</a>
+</div>
+</body>
+</html>
