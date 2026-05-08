@@ -42,4 +42,9 @@ function getDB(): PDO {
     } catch (PDOException $e) {
         die(json_encode(['error' => $e->getMessage()]));
     }
+}        return $pdo;
+
+    } catch (PDOException $e) {
+        die(json_encode(['error' => $e->getMessage()]));
+    }
 }
