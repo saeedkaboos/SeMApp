@@ -66,7 +66,7 @@ $user = getCurrentUser();
                 <div style="font-size:.72rem;color:#64748b;"><?= htmlspecialchars($user['role'] ?? '') ?></div>
             </div>
         </div>
-        <a href="/php-cyber/logout.php"
+        <a href="/logout.php"
            style="display:flex;align-items:center;gap:8px;padding:9px 14px;border-radius:8px;text-decoration:none;color:#f87171;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);font-size:.85rem;font-weight:600;justify-content:center;transition:all .2s;"
            onmouseover="this.style.background='rgba(239,68,68,.2)'"
            onmouseout="this.style.background='rgba(239,68,68,.08)'">
