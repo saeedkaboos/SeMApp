@@ -4,7 +4,7 @@ require_once __DIR__ . '/includes/db.php';
 
 // إذا كان مسجلاً دخوله، اذهب للوحة التحكم
 if (isLoggedIn()) {
-    header('Location: /dashboard.php');
+    header('Location:/dashboard.php');
     exit;
 }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['email']     = $user['email'];
                 $_SESSION['role']      = $user['role'];
 
-                header('Location: /dashboard.php');
+                header('Location:/dashboard.php');
                 exit;
             }
         } else {
