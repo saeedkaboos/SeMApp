@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute([$username]);
         $user = $stmt->fetch();
 
-        if ($user && $user['password_hash'] === hashPassword($password)) {
+        if ($user && $user['password_hash'] === $password) {
             if ($user['status'] === 'inactive') {
                 $error = 'الحساب غير مفعّل';
             } else {
