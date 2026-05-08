@@ -1,25 +1,32 @@
-# استخدم نسخة أباشي لأنها تحتوي على بيئة تشغيل متكاملة
+# استخدام نسخة أباشي لأنها الأنسب للمواقع وتدعم Render بشكل أفضل
 FROM php:8.2-apache
 
-# تثبيت المكتبات المطلوبة للنظام أولاً لضمان نجاح تثبيت الإضافات
+# تثبيت التحديثات والمكتبات الضرورية لنظام التشغيل لضمان نجاح تثبيت إضافات PHP
 RUN apt-get update && apt-get install -y \
     libpq-dev \
-    && docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql
+    libpng-dev \
+    libzip-dev \
+    zip \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
 
-# تفعيل خاصية إعادة التوجيه (مهمة لملفات PHP)
+# تثبيت إضافات PHP (MySQL و PostgreSQL) لضمان عمل قاعدة البيانات
+RUN docker-php-ext-install pdo pdo_mysql pdo_pgsql pgsql
+
+# تفعيل مود Rewrite الخاص بأباشي لإعادة التوجيه (مهم لملفات index و login)
 RUN a2enmod rewrite
 
-# مجلد العمل الافتراضي في أباشي
+# تحديد مسار العمل الافتراضي لسيرفر أباشي
 WORKDIR /var/www/html
 
-# نسخ ملفات مشروعك
+# نسخ جميع ملفات مشروعك إلى داخل الحاوية
 COPY . .
 
-# ضبط الصلاحيات
+# ضبط تصاريح الملفات لتتمكن أباشي من قراءتها
 RUN chown -R www-data:www-data /var/www/html
 
-# المنفذ 80 هو القياسي للحاويات
+# فتح المنفذ 80 (المنفذ القياسي في Render)
 EXPOSE 80
 
-# تشغيل السيرفر
+# تشغيل سيرفر أباشي في الواجهة
 CMD ["apache2-foreground"]
