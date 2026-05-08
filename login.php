@@ -1,5 +1,5 @@
-?php
-requuire_once __DIR__ . '/includes/auth.php';
+<?php
+require_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/db.php';
 
 // إذا كان مسجلاً دخوله، اذهب للوحة التحكم
