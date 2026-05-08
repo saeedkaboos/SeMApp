@@ -1,14 +1,8 @@
 {
     "name": "saeedkab/sem-app",
-    "description": "System for SeMApp management",
+    "description": "Project redirect system",
     "license": "proprietary",
     "require": {
         "php": ">=7.4"
-    },
-    "authors": [
-        {
-            "name": "Saeed Kaboos"
-        }
-    ]
+    }
 }
-
