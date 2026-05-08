@@ -43,7 +43,7 @@ $user = getCurrentUser();
         foreach ($links as $link):
             $isActive = ($currentPage === $link['page']);
         ?>
-        <a href="/php-cyber/<?= $link['href'] ?>"
+        <a href="/<?= $link['href'] ?>"
            class="sidebar-link <?= $isActive ? 'active' : '' ?>"
            onclick="closeSidebar()"
            style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:8px;text-decoration:none;color:<?= $isActive ? '#22d3ee' : '#94a3b8' ?>;">
