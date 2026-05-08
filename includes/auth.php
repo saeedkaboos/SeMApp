@@ -13,7 +13,7 @@ function isLoggedIn(): bool {
 
 function requireLogin(): void {
     if (!isLoggedIn()) {
-        header('Location: /php-cyber/login.php');
+        header('Location: /login.php');
         exit;
     }
 }
