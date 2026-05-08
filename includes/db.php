@@ -3,7 +3,9 @@
 function getDB(): PDO {
     static $pdo = null;
 
-    if ($pdo) return $pdo;
+    if ($pdo) {
+        return $pdo;
+    }
 
     $url = getenv('DATABASE_URL');
 
@@ -19,7 +21,6 @@ function getDB(): PDO {
         $db   = ltrim($parsed['path'], '/');
         $user = $parsed['user'] ?? '';
         $pass = $parsed['pass'] ?? '';
-
     } else {
         $host = getenv('PGHOST') ?: 'localhost';
         $port = getenv('PGPORT') ?: '5432';
@@ -38,11 +39,6 @@ function getDB(): PDO {
         ]);
 
         return $pdo;
-
-    } catch (PDOException $e) {
-        die(json_encode(['error' => $e->getMessage()]));
-    }
-}        return $pdo;
 
     } catch (PDOException $e) {
         die(json_encode(['error' => $e->getMessage()]));
