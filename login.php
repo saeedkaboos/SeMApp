@@ -1,10 +1,10 @@
-<?php
-require_once __DIR__ . '/includes/auth.php';
+?php
+requuire_once __DIR__ . '/includes/auth.php';
 require_once __DIR__ . '/includes/db.php';
 
 // إذا كان مسجلاً دخوله، اذهب للوحة التحكم
 if (isLoggedIn()) {
-    header('Location: /php-cyber/dashboard.php');
+    header('Location: /dashboard.php');
     exit;
 }
 
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['email']     = $user['email'];
                 $_SESSION['role']      = $user['role'];
 
-                header('Location: /php-cyber/dashboard.php');
+                header('Location: /dashboard.php');
                 exit;
             }
         } else {
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <?php endif; ?>
 
-            <form method="POST" action="/php-cyber/login.php">
+            <form method="POST" action="/login.php">
                 <div style="margin-bottom:18px;">
                     <label style="display:block;font-size:.85rem;font-weight:600;color:#94a3b8;margin-bottom:8px;">اسم المستخدم</label>
                     <div style="position:relative;">
