@@ -7,9 +7,7 @@ $user    = getCurrentUser();
 $db      = getDB();
 $message = '';
 
-$fullUser = $db->prepare("SELECT * FROM users WHERE id=?")->execute([$user['id']]) 
-    ? $db->prepare("SELECT * FROM users WHERE id=?")->execute([$user['id']]) 
-    : null;
+
 $stmt = $db->prepare("SELECT * FROM users WHERE id=?");
 $stmt->execute([$user['id']]);
 $fullUser = $stmt->fetch();
